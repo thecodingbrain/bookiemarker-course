@@ -10,7 +10,11 @@ Vagrant.configure("2") do |config|
 
   if Vagrant::Util::Platform.windows? then
     config.vm.provision "shell",
-      inline: "/bin/sh /vagrant/provision.bat"
+      inline: "git clone -b final https://github.com/thecodingbrain/bookiemarker-frontend.git /vagrant/frontend"
+    config.vm.provision "shell",
+      inline: "git clone -b final https://github.com/thecodingbrain/bookiemarker-backend.git /vagrant/backend"
+    config.vm.provision "shell",
+      inline: "git clone -b final https://github.com/thecodingbrain/bookiemarker-worker.git /vagrant/worker"
   else
     config.vm.provision "shell",
       inline: "/bin/sh /vagrant/provision.sh"
